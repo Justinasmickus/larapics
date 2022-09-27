@@ -12,15 +12,24 @@ class Image extends Model
 
     public static function makeDirectory()
     {
-        $subfolder ='images/' . date('Y/m/d');
-        Storage::makeDirectory($subfolder);
-
-        return $subfolder;
+        $subFolder = 'images/' . date('Y/m/d');
+        Storage::makeDirectory($subFolder);
+        return $subFolder;
     }
-    
-   public static function getDimension($image)
-   {
-    [$width, $height] = getimagesize(Storage::path($image));
-    return $width . "x" . $height;
-   }
+
+    public static function getDimension($image)
+    {
+        [$width, $height ] = getimagesize(Storage::path($image));
+        return $width . "x" . $height;
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    public function fileUrl()
+    {
+        return Storage::url($this->file);
+    }
 }
