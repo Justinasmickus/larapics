@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable()->unique();
             $table->string('file');
-            $table->string('dimansion');
+            $table->string('dimension');
             $table->unsignedInteger('views_count')->dafault(0);
             $table->unsignedInteger('downloads_count')->dafault(0);
             $table->boolean('is_published')->default(false);
