@@ -1,3 +1,4 @@
+<x-layout title="Discover free images">
 <h1>All images</h1>
 
 <a href="{{ route('images.create') }}">Upload image</a>
@@ -14,8 +15,10 @@
         <div>
             <a href="{{ $image->route('edit') }}">Edit</a>
             <x-form action="{{ $image->route('destroy') }}" method="DELETE" style="display: inline">
+        
             <button type='submit' onclick="return confirm('Are you sure?')">Delete</button>
             </x-form>
         </div>
     </div>
 @endforeach
+</x-layout>
