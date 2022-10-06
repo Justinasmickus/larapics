@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class Alert extends Component
 {
+   
     public $type;
 
     protected $types = [
@@ -19,8 +20,9 @@ class Alert extends Component
      *
      * @return void
      */
-    public function __construct($type = "info")
+    public function __construct( $type = "info")
     {
+        
         $this->type = $type;
     }
     public function validType()
