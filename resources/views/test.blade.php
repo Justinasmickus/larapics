@@ -7,7 +7,11 @@
     <title>Blade Components</title>
 </head>
 <body>
-    <x-icon/>
+    @php
+    $icon = "logo.svg"    
+    @endphp
+
+    <x-icon :src="$icon"/>
     <x-ui.button/>
 </body>
 </html>
