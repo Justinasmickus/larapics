@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('slug')->nullable()->unique();
             $table->string('file');
             $table->string('dimension');
-            $table->unsignedInteger('views_count')->dafault(0);
-            $table->unsignedInteger('downloads_count')->dafault(0);
+            $table->unsignedInteger('views_count')->default(0);
+            $table->unsignedInteger('downloads_count')->default(0);
             $table->boolean('is_published')->default(false);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

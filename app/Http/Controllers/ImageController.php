@@ -10,23 +10,36 @@ class ImageController extends Controller
 {
     public function index()
     {
-        $images = Image::published()->latest()->paginate(15);
+        $images = Image::latest()->paginate(15);
 
         return view('image.index', compact('images'));
     }
 
     public function show(Image $image)
     {
-       return view('image.show', compact('image'));
+        return view('image.show', compact('image'));
     }
 
     public function create()
     {
-        return view('image.create');
+        return view("image.create");
     }
 
     public function store(ImageRequest $request)
     {
-        dd($request->all());
+        Image::create($request->getData());
+        return to_route('images.index')->with('message', "Image has been uploaded successfully");
     }
+
+    public function edit($image)
+    {
+        return view("image.edit", compact('image'));
+    }
+
+    public function update(Image $image,ImageRequest $request)
+    {
+        $image->update($request->getData());
+        return to_route('images.index')->with('message', "Image has been updated successfully");
+    }
+    
 }
