@@ -13,6 +13,7 @@
                     <a href="{{ $image->permalink() }}">
                         <img src="{{ $image->fileUrl() }}" alt="{{ $image->title }}" class="card-img-top">
                     </a>
+                    @can ('update', $image)
                     <div class="photo-buttons">
                         <div>
                             <a class="btn btn-sm btn-info me-2" href="{{ $image->route('edit') }}">Edit</a>
@@ -22,6 +23,7 @@
                             </x-form>
                         </div>
                     </div>
+                    @endcan              
                 </div>
             </div>
             @endforeach
