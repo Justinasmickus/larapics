@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+use App\Http\Requests\UpdateSettingRequest;
 
 class SettingController extends Controller
 {
@@ -18,7 +19,7 @@ class SettingController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(UpdateSettingRequest $request)
     {
         dd($request->all());
     }
