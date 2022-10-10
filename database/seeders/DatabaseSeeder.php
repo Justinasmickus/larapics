@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Image;
+use App\Models\Social;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,14 +20,18 @@ class DatabaseSeeder extends Seeder
     {
         $images = Storage::allFiles('images');
 
-        foreach($images as $image) 
+        foreach ($images as $image)
         {
+            if (strpos($image, ".DS_Store")) continue;
+
             Image::factory()->create([
                 'file' => $image,
                 'dimension' => Image::getDimension($image)
-            ]);    
+            ]);
         }
-        Image::factory(6)->create();
-    }
 
+        User::find([2, 4, 6])->each(function ($user) {
+            $user->social()->save(Social::factory()->make());
+        });
+    }
 }

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use App\Enums\Role;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -50,21 +49,21 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
-    // public function social()
-    // {
-    //     return $this->hasOne(Social::class)->withDefault();
-    // }
-
+    public function social()
+    {
+        return $this->hasOne(Social::class)->withDefault(); // , "id_user", "_id");
+    }
+    
     // public function recentSocial()
     // {
     //     return $this->hasOne(Social::class)->latestOfMany();
     // }
-
+    
     // public function oldestSocial()
     // {
     //     return $this->hasOne(Social::class)->oldestOfMany();
     // }
-
+    
     // public function socialPriority()
     // {
     //     return $this->hasOne(Social::class)->ofMany('priority', 'min');
@@ -76,3 +75,24 @@ class User extends Authenticatable
         return $imagesCount . ' ' . str()->plural('image', $imagesCount);
     }
 }
+/*
+# Assigning one to one relationship 
+## 1st way
+$user = User::first()
+$social = new Social
+$social->instagram = "https://instagram.com/test"
+$social->user_id = $user->id
+$social->save()
+## 2nd way
+$user = User::first()
+$social = new Social
+$social->instagram = "https://instagram.com/test2"
+$social->website = "https://mywebsite.test"
+$social->user()->associate($user)
+$social->save()
+## 3rd way
+$user = User::first()
+$social = new Social
+$social->instagram = "https://instagram.com/test3"
+$user->social()->save($social)
+*/
