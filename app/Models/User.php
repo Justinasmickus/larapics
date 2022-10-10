@@ -50,25 +50,25 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
-    public function social()
-    {
-        return $this->hasOne(Social::class)->withDefault();
-    }
+    // public function social()
+    // {
+    //     return $this->hasOne(Social::class)->withDefault();
+    // }
 
-    public function recentSocial()
-    {
-        return $this->hasOne(Social::class)->latestOfMany();
-    }
+    // public function recentSocial()
+    // {
+    //     return $this->hasOne(Social::class)->latestOfMany();
+    // }
 
-    public function oldestSocial()
-    {
-        return $this->hasOne(Social::class)->oldestOfMany();
-    }
+    // public function oldestSocial()
+    // {
+    //     return $this->hasOne(Social::class)->oldestOfMany();
+    // }
 
-    public function socialPriority()
-    {
-        return $this->hasOne(Social::class)->ofMany('priority', 'min');
-    }
+    // public function socialPriority()
+    // {
+    //     return $this->hasOne(Social::class)->ofMany('priority', 'min');
+    // }
 
     public function getImagesCount()
     {
