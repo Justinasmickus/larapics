@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ListImageController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ShowAuthorController;
 use App\Http\Controllers\ShowImageController;
 
 /*
@@ -24,13 +25,6 @@ Route::get('/@{user:username}', ShowAuthorController::class)->name('author.show'
 Route::resource('/account/images', ImageController::class)->except('show');
 Route::get('/account/settings', [SettingController::class, 'edit'])->name('settings.edit');
 Route::put('/account/settings', [SettingController::class, 'update'])->name('settings.update');
-
-// Route::get('/images', [ImageController::class, 'index'])->name('images.index');
-// Route::get('/images/create', [ImageController::class, 'create'])->name('images.create');
-// Route::post('/images', [ImageController::class, 'store'])->name('images.store');
-// Route::get('/images/{image}/edit', [ImageController::class, 'edit'])->name('images.edit'); //->can('update','image');
-// Route::put('/images/{image}/', [ImageController::class, 'update'])->name('images.update');
-// Route::delete('/images/{image}/', [ImageController::class, 'destroy'])->name('images.destroy');
 
 Route::view('/test-blade', 'test');
 Auth::routes();

@@ -1,4 +1,4 @@
-<x-layout title="Update image">
+<x-layout title="Update Image">
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-md-6 offset-md-3">
@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <x-form action="{{ $image->route('update') }}" method="PUT">
                             <div class="mb-4">
-                                <img src="{{ $image->fileUrl() }}" alt="{{ $image->title}}" class="img-fluid">
+                                <img src="{{ $image->fileUrl() }}" alt="{{ $image->title }}" class="img-fluid">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="title">Title</label>

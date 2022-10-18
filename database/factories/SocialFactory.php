@@ -12,15 +12,15 @@ class SocialFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function definition()
     {
         return [
-            'instagram' => rand(0,1) === 1 ? $this->faker->url() : NULL,
-            'facebook' => rand(0,1) === 1 ? $this->faker->url() : NULL,
-            'twitter' => rand(0,1) === 1 ? $this->faker->url() : NULL,
-            'website' => rand(0,1) === 1 ? $this->faker->url() : NULL,
+            'instagram' => rand(0, 1) === 1 ? $this->faker->url() : NULL,
+            'facebook' => rand(0, 1) === 1 ? $this->faker->url() : NULL,
+            'twitter' => rand(0, 1) === 1 ? $this->faker->url() : NULL,
+            'website' => rand(0, 1) === 1 ? $this->faker->url() : NULL,
         ];
     }
 }

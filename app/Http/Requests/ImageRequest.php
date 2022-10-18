@@ -24,7 +24,7 @@ class ImageRequest extends FormRequest
      */
     public function rules()
     {
-        if($this->method() == 'PUT') {
+        if ($this->method() == 'PUT') {
             return [
                 'title' => 'required'
             ];
@@ -38,7 +38,7 @@ class ImageRequest extends FormRequest
     public function getData()
     {
         $data = $this->validated() + [
-            'user_id' =>  $this->user()->id
+            'user_id' => $this->user()->id
         ];
 
         if ($this->hasFile('file'))
@@ -51,6 +51,4 @@ class ImageRequest extends FormRequest
 
         return $data;
     }
-
-    
 }

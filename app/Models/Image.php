@@ -22,14 +22,6 @@ class Image extends Model
     {
         return $this->created_at->diffForHumans();
     }
-    public function scopeVisibleFor($query, User $user)
-    {
-        if ($user->role === Role::Admin || $user->role === Role::Editor) {
-            return;
-        }
-
-        $query->where("user_id", $user->id);
-    }
 
     public static function makeDirectory()
     {
@@ -49,6 +41,15 @@ class Image extends Model
         return $query->where('is_published', true);
     }
 
+    public function scopeVisibleFor($query, User $user)
+    {
+        if ($user->role === Role::Admin || $user->role === Role::Editor) {
+            return;
+        }
+        
+        $query->where("user_id", $user->id);
+    }
+
     public function fileUrl()
     {
         return Storage::url($this->file);
@@ -56,7 +57,7 @@ class Image extends Model
 
     public function permalink()
     {
-        return $this->slug ? route('images.show', ['image' => $this->slug]) : '#';
+        return $this->slug ? route("images.show", $this->slug) : '#';
     }
 
     public function route($method, $key = 'id')
@@ -64,12 +65,12 @@ class Image extends Model
         return route("images.{$method}", $this->$key);
     }
 
-    public function getSlug() 
+    public function getSlug()
     {
         $slug = str($this->title)->slug();
         $numSlugsFound = static::where('slug', 'regexp', "^" . $slug . "(-[0-9])?")->count();
         if ($numSlugsFound > 0) {
-            return $slug . "-" . $numSlugsFound + 1;
+            return $slug . "-" .$numSlugsFound + 1;
         }
         return $slug;
     }
@@ -82,18 +83,16 @@ class Image extends Model
                 $image->is_published = true;
             }
         });
-
+        
         static::updating(function ($image) {
             if ($image->title && !$image->slug) {
                 $image->slug = $image->getSlug();
                 $image->is_published = true;
             }
         });
-
+        
         static::deleted(function ($image) {
-           Storage::delete($image->file);
+            Storage::delete($image->file);
         });
     }
-
-
 }
