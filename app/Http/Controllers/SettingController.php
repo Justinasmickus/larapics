@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\UpdateSettingRequest;
 
 class SettingController extends Controller
@@ -21,9 +20,8 @@ class SettingController extends Controller
 
     public function update(UpdateSettingRequest $request)
     {
-        dd($request->all());
         $request->user()->updateSettings($request->getData());
 
-        return back()->with('message', "Your changes has been saved");
+        return back()->with('message', "Your changes have been saved");
     }
 }
